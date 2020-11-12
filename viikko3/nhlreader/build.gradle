@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+mainClassName = 'ohtu.Main'
+/* joudumme tässä tehtävässä käyttämään vanhaa tapaa mainClassin määrittelyyn sillä 
+tehtävässä käytettävä shadowJar-plugin ei osaa uudempaa syntaksia
+application {
+    mainClass = 'ohtu.Main'
+}
+
+*/
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ohtu.Main'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.13'
+}
