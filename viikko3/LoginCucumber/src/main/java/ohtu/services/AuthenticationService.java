@@ -41,6 +41,36 @@ public class AuthenticationService {
     private boolean invalid(String username, String password) {
         // validity check of username and password
 
+        //username taken
+        if (userDao.findByName(username) != null) {
+            return true;
+        }
+
+        //username too short
+        if (username.length() < 3) {
+            return true;
+        }
+
+        //password too short
+        if (password.length() < 8) {
+            return true;
+        }
+
+        //password consists of only letters
+        int nonLetters = 0;
+        for (char c : password.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                nonLetters++;
+            }
+        }
+
+        if (nonLetters < 1) {
+            return true;
+        }
+
+
+
+        //otherwise return false
         return false;
     }
 }
